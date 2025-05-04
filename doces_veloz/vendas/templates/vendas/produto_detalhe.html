@@ -1,0 +1,15 @@
+{% extends 'vendas/base.html' %}
+
+
+
+{% block content %}
+  <h2>{{ produto.nome }}</h2>
+  <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+  <p>{{ produto.descricao }}</p>
+  <p>Preço: R$ {{ produto.preco }}</p>
+  <p>Disponíveis: {{ produto.quantidade }}</p>
+  <form action="/adicionar/{{ produto.id }}/" method="post">
+    {% csrf_token %}
+    <button type="submit">Adicionar ao carrinho</button>
+  </form>
+{% endblock %}

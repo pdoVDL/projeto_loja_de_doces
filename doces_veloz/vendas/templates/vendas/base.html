@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Doces Velozes{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="barra">
+    <div class="logo">Doces Velozes</div>
+    <div class="menu">
+      <a href="{% url 'home' %}">
+        <button class="botao-menu">Home</button>
+      </a>
+      <button class="botao-menu sidebar-toggle" onclick="toggleSidebar()">Login</button>
+    </div>
+  </div>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="botao-padrao">Logout</a>
+  {% else %}
+    <a href="{% url 'login' %}" class="botao-padrao">Login</a>
+    <a href="{% url 'cadastro' %}" class="botao-padrao">Cadastro</a>
+  {% endif %}
+</div>
+
+  </div>
+  <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+  <div class="conteudo">
+    {% block content %}{% endblock %}
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+    }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+  </script>
+</body>
+</html>

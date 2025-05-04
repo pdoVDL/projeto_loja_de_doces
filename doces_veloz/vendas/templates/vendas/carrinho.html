@@ -1,0 +1,38 @@
+
+{% extends 'vendas/base.html' %}
+{% load static %}
+
+{% block title %}Carrinho - Doces Velozes{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/carrinho.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1>Seu Carrinho</h1>
+  {% if itens %}
+    <table>
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Preço Unitário</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in itens %}
+        <tr>
+          <td>{{ item.produto.nome }}</td>
+          <td>{{ item.quantidade }}</td>
+          <td>R$ {{ item.produto.preco }}</td>
+          <td>R$ {{ item.quantidade|floatformat:2|add:item.produto.preco|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="#" class="finalizar">Finalizar Compra</a>
+  {% else %}
+    <p>Seu carrinho está vazio.</p>
+  {% endif %}
+{% endblock %}

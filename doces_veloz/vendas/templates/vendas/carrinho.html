@@ -1,38 +1,61 @@
-
 {% extends 'vendas/base.html' %}
 {% load static %}
 
 {% block title %}Carrinho - Doces Velozes{% endblock %}
 
-{% block extra_css %}
+{% block head %}
   <link rel="stylesheet" href="{% static 'css/carrinho.css' %}">
 {% endblock %}
 
 {% block content %}
-  <h1>Seu Carrinho</h1>
-  {% if itens %}
-    <table>
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Quantidade</th>
-          <th>Preço Unitário</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in itens %}
-        <tr>
-          <td>{{ item.produto.nome }}</td>
-          <td>{{ item.quantidade }}</td>
-          <td>R$ {{ item.produto.preco }}</td>
-          <td>R$ {{ item.quantidade|floatformat:2|add:item.produto.preco|floatformat:2 }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <a href="#" class="finalizar">Finalizar Compra</a>
-  {% else %}
-    <p>Seu carrinho está vazio.</p>
-  {% endif %}
+<h1>Seu Carrinho</h1>
+<table class="carrinho-tabela">
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Preço Unitário</th>
+      <th>Subtotal</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in carrinho_items %}
+      <tr>
+        <td>{{ item.produto.nome }}</td>
+        <td>{{ item.quantidade }}</td>
+        <td>R$ {{ item.produto.preco }}</td>
+        <td>R$ {{ item.subtotal }}</td>
+        <td class="botoes-acoes">
+
+          <!-- Botão para adicionar 1 -->
+          <form action="{% url 'adicionar_ao_carrinho' item.produto.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="quantidade" value="1">
+            <button type="submit" class="botao-mini">+</button>
+          </form>
+
+          <!-- Botão para remover 1 (usa o ID do CarrinhoItem!) -->
+          <form action="{% url 'remover_uma_unidade' item.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="botao-mini">-</button>
+          </form>
+
+          <!-- Botão para remover o item por completo -->
+          <a href="{% url 'remover_do_carrinho' item.produto.id %}" class="botao-mini remover">Remover</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="5">Seu carrinho está vazio.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if carrinho_items %}
+  <p class="total">Total: R$ {{ total }}</p>
+  <a href="{% url 'finalizar_venda' %}" class="botao-padrao">Finalizar Compra</a>
+  <a href="{% url 'cancelar_carrinho' %}" class="botao-padrao cancelar">Cancelar Compra</a>
+{% endif %}
 {% endblock %}

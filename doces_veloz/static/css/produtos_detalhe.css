@@ -1,0 +1,67 @@
+/* Estilização do preço e quantidade */
+.preco-container, .estoque-container {
+  background-color: transparent; /* Fundo transparente */
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombrinha sutil */
+}
+
+.preco {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: black; /* Cor dourada para o preço */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve para destacar */
+  border-bottom: 2px solid #FFD700; /* Borda dourada embaixo do preço */
+}
+
+.estoque {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color:black; /* Cor dourada para o estoque disponível */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve para destacar */
+  border-bottom: 2px solid #FFD700; /* Borda dourada embaixo da quantidade */
+}
+
+.estoque-quantidade {
+  font-weight: bold;
+  color:black; /* Dourado para a quantidade disponível */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra leve para destacar */
+}
+
+/* Estilização do botão de escolher quantidade */
+.quantidade-btn {
+  background-color: #FF6347; /* Cor vibrante */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quantidade-btn:hover {
+  background-color: #E55347; /* Cor mais escura ao passar o mouse */
+}
+
+/* Caixa de entrada para selecionar a quantidade */
+.caixa-quantidade {
+  display: none; /* Inicialmente escondida */
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#quantidade-input {
+  padding: 8px;
+  font-size: 1rem;
+  width: 60px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+/* Ajustando o tamanho do botão de adiciona*

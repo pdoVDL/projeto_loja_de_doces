@@ -4,6 +4,7 @@
 {% block title %}Produtos - Doces Velozes{% endblock %}
 
 {% block head %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/produtos.css' %}">
 {% endblock %}
 
@@ -12,11 +13,14 @@
 <div class="produtos-container">
   {% for produto in produtos %}
     <div class="produto">
-      <img src="{% static 'imagens/' %}{{ produto.imagem }}" alt="{{ produto.nome }}">
-      <h2>{{ produto.nome }}</h2>
-      <p>{{ produto.descricao }}</p>
-      <p><strong>R$ {{ produto.preco }}</strong></p>
-      <a href="{% url 'produto_detalhe' produto.id %}" class="botao-padrao">Ver Detalhes</a>
+      <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+      <div class="produto-info">
+        <h2>{{ produto.nome }}</h2>
+        <p>{{ produto.descricao }}</p>
+        <p><strong>R$ {{ produto.preco }}</strong></p>
+        <p>Itens disponíveis: {{ produto.quantidade }}</p>
+        <a href="{% url 'produto_detalhe' produto.id %}" class="botao-padrao">Ver Detalhes</a>
+      </div>
     </div>
   {% endfor %}
 </div>

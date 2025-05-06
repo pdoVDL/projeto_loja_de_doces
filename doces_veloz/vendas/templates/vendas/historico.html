@@ -1,0 +1,35 @@
+{% extends 'vendas/base.html' %}
+{% load static %}
+
+{% block title %}Histórico de Compras{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/historico.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<h1>Histórico de Compras</h1>
+<table class="tabela-historico">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Total (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for venda in vendas %}
+      <tr>
+        <td>{{ venda.data|date:"d/m/Y H:i" }}</td>
+        <td>{{ venda.produto.nome }}</td>
+        <td>{{ venda.quantidade }}</td>
+        <td>{{ venda.total|floatformat:2 }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">Nenhuma compra realizada.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

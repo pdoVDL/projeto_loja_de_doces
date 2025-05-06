@@ -8,26 +8,37 @@
 {% endblock %}
 
 {% block content %}
-<h1>Cadastro</h1>
-<form method="post">
-  {% csrf_token %}
-  <div>
-    <label for="id_username">Usuário:</label>
-    <input type="text" name="username" id="id_username" required>
-  </div>
-  <div>
-    <label for="id_email">Email:</label>
-    <input type="email" name="email" id="id_email" required>
-  </div>
-  <div>
-    <label for="id_password1">Senha:</label>
-    <input type="password" name="password1" id="id_password1" required>
-  </div>
-  <div>
-    <label for="id_password2">Confirme a Senha:</label>
-    <input type="password" name="password2" id="id_password2" required>
-  </div>
-  <button type="submit" class="botao-padrao">Cadastrar</button>
-</form>
-{% endblock %}
+<div class="cadastro-container">
 
+  {% if messages %}
+    <ul class="mensagens">
+      {% for message in messages %}
+        <li class="mensagem">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <h1 class="titulo-cadastro">Cadastro</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label for="id_username">Usuário:</label>
+      <input type="text" name="username" id="id_username" required>
+    </div>
+    <div>
+      <label for="id_email">Email:</label>
+      <input type="email" name="email" id="id_email" required>
+    </div>
+    <div>
+      <label for="id_password1">Senha:</label>
+      <input type="password" name="password1" id="id_password1" required>
+    </div>
+    <div>
+      <label for="id_password2">Confirme a Senha:</label>
+      <input type="password" name="password2" id="id_password2" required>
+    </div>
+    <button type="submit" class="botao-padrao">Cadastrar</button>
+  </form>
+</div>
+{% endblock %}

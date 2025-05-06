@@ -61,3 +61,19 @@ form {
     margin-top: 10px;
   }
   
+  .mensagens {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .mensagem {
+    background-color: #ffcccc;
+    color: #a93226;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  

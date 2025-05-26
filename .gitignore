@@ -1,0 +1,43 @@
+# Ambiente virtual
+venv/
+env/
+ENV/
+.venv/
+
+# Configurações do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# SQLite (nunca deve ir para o repositório em produção)
+*.sqlite3
+*.db
+
+# Arquivo de variáveis de ambiente
+.env
+
+# Cache do Django
+*.log
+*.pot
+*.pyc
+*.mo
+
+# Arquivos e pastas do sistema
+.DS_Store
+Thumbs.db
+
+# Pasta de migrações (opcional ignorar, se usar reset completo)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+**/migrations/*.py~
+
+# Configurações de IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Arquivos temporários
+*.swp
+*~

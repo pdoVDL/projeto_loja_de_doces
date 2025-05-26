@@ -1,0 +1,25 @@
+{% extends 'vendas/base.html' %}
+{% load static %}
+
+{% block title %}Login - Doces Velozes{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label for="id_username">Usuário:</label>
+    <input type="text" name="username" id="id_username" required>
+  </div>
+  <div>
+    <label for="id_password">Senha:</label>
+    <input type="password" name="password" id="id_password" required>
+  </div>
+  <button type="submit" class="botao-padrao">Entrar</button>
+</form>
+{% endblock %}
+

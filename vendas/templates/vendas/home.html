@@ -1,0 +1,16 @@
+{% extends 'vendas/base.html' %}
+{% load static %}
+
+{% block title %}Home - Doces Velozes{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo home-conteudo">
+  <h1><span class="destaque-marrom">Não é só chocolate</span>,<br>é o sabor do cacau</h1>
+  <p class="frase">"Nosso cacau nasce no coração da floresta, carregando em cada grão a doçura da terra, a força da natureza e a tradição de quem transforma ingredientes em experiências inesquecíveis."</p>
+  <a href="{% url 'produtos' %}" class="botao-padrao">Ver produtos</a>
+</div>
+{% endblock %}

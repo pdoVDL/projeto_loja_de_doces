@@ -1,0 +1,69 @@
+{% extends 'vendas/base.html' %}
+{% load static %}
+
+{% block title %}{{ produto.nome }} - Doces Velozes{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/produtos_detalhe.css' %}">
+  <!-- Incluindo o Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="produto-detalhe-container row">
+  <div class="imagem-produto col-md-4">
+    <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="img-fluid">
+  </div>
+  <div class="info-produto col-md-8">
+    <h1>{{ produto.nome }}</h1>
+
+    <!-- Detalhes do produto com fundo marrom quase invisível -->
+    <div class="detalhes-produto">
+      <p class="descricao">{{ produto.descricao }}</p>
+    </div>
+
+    <!-- Estilização do preço e disponibilidade ao lado da imagem -->
+    <div class="preco-container mb-3">
+      <p class="preco"><strong>Preço:</strong> R$ {{ produto.preco }}</p>
+    </div>
+
+    <div class="estoque-container mb-3">
+      <p class="estoque"><strong>Disponíveis:</strong> <span class="estoque-quantidade">{{ produto.quantidade }}</span></p>
+    </div>
+
+    <!-- Botão para abrir a caixa de entrada da quantidade -->
+    <form action="{% url 'adicionar_ao_carrinho' produto.id %}" method="post">
+      {% csrf_token %}
+      
+      <!-- Barra de escolha de quantidade com Bootstrap -->
+      <div class="quantidade-container mb-3">
+        <label for="quantidade" class="form-label">Quantidade:</label>
+        <input type="range" class="form-range" id="quantidade" name="quantidade" min="1" max="{{ produto.quantidade }}" value="1" onchange="updateQuantidadeValue(this)">
+        <span id="quantidade-display">1</span> itens
+        <button type="button" class="btn btn-warning btn-sm mt-2" onclick="mostrarCaixaQuantidade()">Alterar Quantidade</button>
+        
+        <!-- Caixa de entrada oculta para a quantidade -->
+        <div id="caixa-quantidade" class="caixa-quantidade mt-3" style="display: none;">
+          <label for="quantidade-input">Quantos itens?</label>
+          <input type="number" id="quantidade-input" name="quantidade" class="form-control" min="1" max="{{ produto.quantidade }}">
+          <button type="submit" class="btn btn-success mt-2">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+</div>
+
+<script>
+  // Função para mostrar a caixa de entrada de quantidade
+  function mostrarCaixaQuantidade() {
+    document.getElementById('caixa-quantidade').style.display = 'block';
+  }
+
+  // Função para atualizar o valor da quantidade exibido
+  function updateQuantidadeValue(rangeInput) {
+    document.getElementById('quantidade-display').textContent = rangeInput.value;
+  }
+</script>
+
+{% endblock %}

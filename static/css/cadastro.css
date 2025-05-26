@@ -1,0 +1,79 @@
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fdf3e7;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #7b3f00;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: #a93226;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #922b21;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  p a {
+    color: #a93226;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .erro {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .mensagens {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .mensagem {
+    background-color: #ffcccc;
+    color: #a93226;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  

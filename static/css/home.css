@@ -1,0 +1,21 @@
+.home-conteudo {
+  padding: 80px 50px;
+  max-width: 700px;
+}
+
+.home-conteudo h1 {
+  font-size: 36px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.destaque-marrom {
+  color: #7b3f00;
+  font-weight: bold;
+}
+
+.frase {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #444;
+}

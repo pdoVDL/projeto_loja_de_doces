@@ -1,10 +1,8 @@
-from django.shortcuts import render,  redirect
-from django.contrib.auth import logout
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
+from django.contrib import messages
 
-# Create your views here.
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -14,10 +12,9 @@ def login_view(request):
             login(request, user)
             return redirect('/')
         else:
-            return render(request, 'usuarios/login.html', {'erro': 'Usuário ou senha inválidos'})
+            messages.error(request, "Usuário ou senha inválidos.")
+            return render(request, 'usuarios/login.html')
     return render(request, 'usuarios/login.html')
-
-
 
 def cadastro(request):
     if request.method == 'POST':
@@ -36,14 +33,14 @@ def cadastro(request):
 
         if User.objects.filter(email=email).exists():
             messages.error(request, "Já existe uma conta com este e-mail.")
-            return render(request, 'usuarioscadastro.html')
+            return render(request, 'usuarios/cadastro.html')
 
         User.objects.create_user(username=username, email=email, password=password1)
-        return redirect('/login/')
+        messages.success(request, "Cadastro realizado com sucesso! Faça login.")
+        return redirect('login')
 
     return render(request, 'usuarios/cadastro.html')
 
-
 def logout_view(request):
     logout(request)
-    return redirect('home')  
+    return redirect('home')
